@@ -280,7 +280,7 @@ public class FlexiblePageControl: UIView {
 
         let duration = animated ? animateDuration : 0
 
-        for index in 0..<(displayCount + 4) {
+        for index in 0..<displayCount {
 
             let item = items[index]
 
@@ -289,32 +289,8 @@ public class FlexiblePageControl: UIView {
             if item.index == currentPage {
                 item.state = .Normal
             }
-            // outside of left
-            else if item.index < 0 {
-                item.state = .None
-            }
-            // outside of right
-            else if item.index > numberOfPages - 1 {
-                item.state = .None
-            }
-            // first dot from left
-            else if item.frame.minX <= scrollView.contentOffset.x {
-                item.state = .Small
-            }
-            // first dot from right
-            else if item.frame.maxX >= scrollView.contentOffset.x + scrollView.bounds.width {
-                item.state = .Small
-            }
-            // second dot from left
-            else if item.frame.minX <= scrollView.contentOffset.x + itemSize {
-                item.state = .Medium
-            }
-            // second dot from right
-            else if item.frame.maxX >= scrollView.contentOffset.x + scrollView.bounds.width - itemSize {
-                item.state = .Medium
-            }
             else {
-                item.state = .Normal
+                item.state = .Medium   
             }
         }
     }
